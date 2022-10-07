@@ -1,15 +1,18 @@
-import { View } from "react-native";
-import Text from "./Text";
+import { StyleSheet, View } from "react-native";
+import RepositoryInfo from "./RepositoryInfo";
+import RepositoryStats from "./RepositoryStats";
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "white",
+    padding: 16,
+  },
+});
 
 const FlatListItem = ({ item }) => (
-  <View>
-    <Text>Full name: {item.fullName}</Text>
-    <Text>Description: {item.description}</Text>
-    <Text>Language: {item.language}</Text>
-    <Text>Forks: {item.language}</Text>
-    <Text>Stars: {item.stargazersCount}</Text>
-    <Text>Ratings: {item.ratingAverage}</Text>
-    <Text>Reviews: {item.reviewCount}</Text>
+  <View style={styles.container}>
+    <RepositoryInfo item={item} />
+    <RepositoryStats item={item} />
   </View>
 );
 

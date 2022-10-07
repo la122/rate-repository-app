@@ -5,12 +5,12 @@ import theme from "../theme";
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: Constants.statusBarHeight,
+    paddingTop: Constants.statusBarHeight + 16,
     backgroundColor: theme.colors.appBar,
     flexDirection: "row",
     alignContent: "flex-end",
     alignItems: "flex-end",
-    padding: 16
+    padding: 16,
   },
 });
 

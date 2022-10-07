@@ -4,6 +4,7 @@ const theme = {
     textSecondary: "#586069",
     textContrast: "#f8f8f8",
     primary: "#0366d6",
+    background: "#e1e4ee",
     appBar: "#24292e",
   },
   fontSizes: {
