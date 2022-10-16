@@ -2,9 +2,9 @@ import { Formik } from "formik";
 import { Pressable, View } from "react-native";
 import * as yup from "yup";
 
-import theme from "../theme";
 import FormikTextInput from "./FormikTextInput";
 import Subheading from "./Subheading";
+import theme from "../theme";
 
 const styles = {
   container: {

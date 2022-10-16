@@ -1,6 +1,7 @@
 import { StyleSheet, View } from "react-native";
-import Subheading from "./Subheading";
-import Text from "./Text";
+
+import Subheading from "../Subheading";
+import Text from "../Text";
 
 const styles = StyleSheet.create({
   columns: {

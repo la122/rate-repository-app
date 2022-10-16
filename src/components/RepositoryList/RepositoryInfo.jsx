@@ -1,8 +1,9 @@
 import { StyleSheet, View } from "react-native";
+
 import Avatar from "./Avatar";
-import Subheading from "./Subheading";
 import Tag from "./Tag";
-import Text from "./Text";
+import Subheading from "../Subheading";
+import Text from "../Text";
 
 const styles = StyleSheet.create({
   columns: {

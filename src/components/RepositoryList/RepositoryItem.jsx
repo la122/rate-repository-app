@@ -1,4 +1,5 @@
 import { StyleSheet, View } from "react-native";
+
 import RepositoryInfo from "./RepositoryInfo";
 import RepositoryStats from "./RepositoryStats";
 

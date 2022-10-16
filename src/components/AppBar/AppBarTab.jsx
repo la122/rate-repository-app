@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 import { Link } from "react-router-native";
-import Subheading from "./Subheading";
+
+import Subheading from "../Subheading";
 
 const styles = StyleSheet.create({
   container: {
