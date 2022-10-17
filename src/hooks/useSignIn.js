@@ -16,7 +16,12 @@ const useSignIn = () => {
     return data;
   };
 
-  return [signIn, result];
+  const signOut = async () => {
+    await authStorage.removeAccessToken();
+    apolloClient.resetStore();
+  };
+
+  return [signIn, signOut, result];
 };
 
 export default useSignIn;
