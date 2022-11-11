@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
 });
 
 const FlatListItem = ({ item }) => (
-  <View style={styles.container}>
+  <View testID="repositoryItem" style={styles.container}>
     <RepositoryInfo item={item} />
     <RepositoryStats item={item} />
   </View>
