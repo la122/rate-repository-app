@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
 
 const RepositoryItem = ({ item, showButton }) => {
   const openUrl = () => {
-    console.log("going to ", item.url);
     Linking.openURL(item.url);
   };
 
