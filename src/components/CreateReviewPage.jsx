@@ -75,7 +75,7 @@ const CreateReviewPage = () => {
       const data = await createReview(review);
       navigate(`/repositories/${data.createReview.repositoryId}`);
     } catch (e) {
-      console.log(e);
+      console.warn(e);
     }
   };
 

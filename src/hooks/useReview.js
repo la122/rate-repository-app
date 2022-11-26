@@ -6,7 +6,6 @@ const useReview = () => {
   const [createReviewMutation, result] = useMutation(CREATE_REVIEW);
 
   const createReview = async (review) => {
-    console.log("creating", review);
     const { data } = await createReviewMutation({ variables: { review } });
     return data;
   };
