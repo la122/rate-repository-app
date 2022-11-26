@@ -38,8 +38,11 @@ export const GET_REPOSITORY = gql`
 `;
 
 export const GET_REPOSITORIES = gql`
-  query Repositories {
-    repositories {
+  query Repositories(
+    $orderDirection: OrderDirection
+    $orderBy: AllRepositoriesOrderBy
+  ) {
+    repositories(orderDirection: $orderDirection, orderBy: $orderBy) {
       totalCount
       edges {
         node {
