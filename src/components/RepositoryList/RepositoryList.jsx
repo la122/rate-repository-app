@@ -5,6 +5,8 @@ import { Picker } from "@react-native-picker/picker";
 import RepositoryItem from "./RepositoryItem";
 import useRepositories from "../../hooks/useRepositories";
 import { useState } from "react";
+import { Searchbar } from "react-native-paper";
+import { useDebounce } from "use-debounce";
 
 const styles = StyleSheet.create({
   separator: {
@@ -70,16 +72,33 @@ const SortingPicker = ({ sortOption, setSortOption }) => {
 
 const RepositoryList = () => {
   const [sortOption, setSortOption] = useState(0);
-  const { repositories } = useRepositories(SORT_OPTIONS[sortOption]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchKeyword] = useDebounce(searchQuery);
+  const { repositories } = useRepositories({
+    ...SORT_OPTIONS[sortOption],
+    searchKeyword,
+  });
 
-  const listHeader = () => (
-    <SortingPicker sortOption={sortOption} setSortOption={setSortOption} />
-  );
+  const onChangeSearch = (value) => {
+    setSearchQuery(value);
+  };
 
   return (
     <RepositoryListContainer
       repositories={repositories}
-      listHeader={listHeader}
+      listHeader={
+        <>
+          <Searchbar
+            placeholder="search"
+            onChangeText={onChangeSearch}
+            value={searchQuery}
+          />
+          <SortingPicker
+            sortOption={sortOption}
+            setSortOption={setSortOption}
+          />
+        </>
+      }
     />
   );
 };
