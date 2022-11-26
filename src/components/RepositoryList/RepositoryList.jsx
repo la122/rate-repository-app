@@ -1,12 +1,12 @@
 import { FlatList, View, StyleSheet, Pressable } from "react-native";
 import { useNavigate } from "react-router-native";
-import { Picker } from "@react-native-picker/picker";
 
 import RepositoryItem from "./RepositoryItem";
 import useRepositories from "../../hooks/useRepositories";
 import { useState } from "react";
-import { Searchbar } from "react-native-paper";
+import { IconButton, Menu, Searchbar } from "react-native-paper";
 import { useDebounce } from "use-debounce";
+import Text from "../Text";
 
 const styles = StyleSheet.create({
   separator: {
@@ -61,12 +61,38 @@ const SORT_OPTIONS = [
 ];
 
 const SortingPicker = ({ sortOption, setSortOption }) => {
+  const [visible, setVisible] = useState(false);
+
+  const openMenu = () => setVisible(true);
+  const closeMenu = () => setVisible(false);
+
   return (
-    <Picker selectedValue={sortOption} onValueChange={setSortOption}>
-      {SORT_OPTIONS.map((option, index) => (
-        <Picker.Item label={option.label} value={index} key={index} />
-      ))}
-    </Picker>
+    <View
+      style={{
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: 8,
+      }}
+    >
+      <Pressable onPress={openMenu}>
+        <Text fontSize="subheading">{SORT_OPTIONS[sortOption].label}</Text>
+      </Pressable>
+
+      <Menu
+        anchor={<IconButton icon="menu-down" onPress={openMenu} />}
+        visible={visible}
+        onDismiss={closeMenu}
+      >
+        {SORT_OPTIONS.map((option, index) => (
+          <Menu.Item
+            key={index}
+            title={option.label}
+            onPress={() => setSortOption(index)}
+          />
+        ))}
+      </Menu>
+    </View>
   );
 };
 
