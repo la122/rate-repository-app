@@ -26,7 +26,11 @@ const FlatListItem = ({ item }) => {
   );
 };
 
-export const RepositoryListContainer = ({ repositories, listHeader }) => {
+export const RepositoryListContainer = ({
+  repositories,
+  listHeader,
+  onEndReached,
+}) => {
   const repositoryNodes = repositories
     ? repositories.edges.map((edge) => edge.node)
     : [];
@@ -38,6 +42,8 @@ export const RepositoryListContainer = ({ repositories, listHeader }) => {
       ListHeaderComponent={listHeader}
       renderItem={({ item }) => <FlatListItem item={item} />}
       keyExtractor={(item) => item.id}
+      onEndReached={onEndReached}
+      onEndReachedThreshold={0.5}
     />
   );
 };
@@ -100,13 +106,18 @@ const RepositoryList = () => {
   const [sortOption, setSortOption] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchKeyword] = useDebounce(searchQuery);
-  const { repositories } = useRepositories({
+  const { repositories, fetchMore } = useRepositories({
+    first: 6,
     ...SORT_OPTIONS[sortOption],
     searchKeyword,
   });
 
   const onChangeSearch = (value) => {
     setSearchQuery(value);
+  };
+
+  const onEndReached = () => {
+    fetchMore();
   };
 
   return (
@@ -125,6 +136,7 @@ const RepositoryList = () => {
           />
         </>
       }
+      onEndReached={onEndReached}
     />
   );
 };

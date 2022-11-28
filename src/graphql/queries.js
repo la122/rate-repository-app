@@ -39,11 +39,15 @@ export const GET_REPOSITORY = gql`
 
 export const GET_REPOSITORIES = gql`
   query Repositories(
+    $first: Int
+    $after: String
     $orderDirection: OrderDirection
     $orderBy: AllRepositoriesOrderBy
     $searchKeyword: String
   ) {
     repositories(
+      first: $first
+      after: $after
       orderDirection: $orderDirection
       orderBy: $orderBy
       searchKeyword: $searchKeyword
@@ -68,6 +72,11 @@ export const GET_REPOSITORIES = gql`
           language
           userHasReviewed
         }
+      }
+      pageInfo {
+        endCursor
+        startCursor
+        hasNextPage
       }
     }
   }
