@@ -66,7 +66,7 @@ export const ReviewFormContainer = ({ onSubmit }) => {
 };
 
 const CreateReviewPage = () => {
-  const [createReview] = useReview();
+  const { createReview } = useReview();
   const navigate = useNavigate();
 
   const onSubmit = async (values) => {

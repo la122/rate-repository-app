@@ -10,6 +10,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
     padding: 16,
+  },
+  content: {
     flexDirection: "row",
   },
   rows: {
@@ -41,23 +43,26 @@ const styles = StyleSheet.create({
 
 export const ItemSeparator = () => <View style={styles.separator} />;
 
-export const ReviewItem = ({ review, subheading }) => {
+export const ReviewItem = ({ review, subheading, actions }) => {
   const date = format(new Date(review.createdAt), "dd.MM.yyyy");
 
   return (
     <View style={styles.container}>
-      <View style={styles.rating}>
-        <Text fontWeight="bold" color="primary">
-          {review.rating}
-        </Text>
+      <View style={styles.content}>
+        <View style={styles.rating}>
+          <Text fontWeight="bold" color="primary">
+            {review.rating}
+          </Text>
+        </View>
+        <View style={styles.rows}>
+          <Subheading>{subheading ?? review.user.username}</Subheading>
+          <Text style={styles.item} color="textSecondary">
+            {date}
+          </Text>
+          <Text>{review.text}</Text>
+        </View>
       </View>
-      <View style={styles.rows}>
-        <Subheading>{subheading ?? review.user.username}</Subheading>
-        <Text style={styles.item} color="textSecondary">
-          {date}
-        </Text>
-        <Text>{review.text}</Text>
-      </View>
+      <View>{actions}</View>
     </View>
   );
 };
