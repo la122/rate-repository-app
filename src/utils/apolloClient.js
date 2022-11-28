@@ -14,6 +14,7 @@ const cache = new InMemoryCache({
     Query: {
       fields: {
         repositories: relayStylePagination(),
+        me: relayStylePagination(),
       },
     },
     Repository: {

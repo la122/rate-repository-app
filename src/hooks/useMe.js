@@ -1,17 +1,33 @@
 import { useQuery } from "@apollo/client";
 import { GET_ME } from "../graphql/queries";
 
-const useMe = () => {
-  const { data, error, loading, refetch } = useQuery(GET_ME, {
+const useMe = (variables) => {
+  const { data, loading, fetchMore, ...result } = useQuery(GET_ME, {
+    variables,
     fetchPolicy: "cache-and-network",
   });
 
-  if (error) {
-    console.error("Quering active user failed", error);
-    return;
-  }
+  const handleFetchMore = () => {
+    const canFetchMore = !loading && data?.me.reviews.pageInfo.hasNextPage;
 
-  return { me: data?.me, loading, refetch };
+    if (!canFetchMore) {
+      return;
+    }
+
+    fetchMore({
+      variables: {
+        after: data.me.reviews.pageInfo.endCursor,
+        ...variables,
+      },
+    });
+  };
+
+  return {
+    me: data?.me,
+    fetchMore: handleFetchMore,
+    loading,
+    ...result,
+  };
 };
 
 export default useMe;

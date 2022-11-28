@@ -39,9 +39,9 @@ const styles = StyleSheet.create({
   },
 });
 
-const ItemSeparator = () => <View style={styles.separator} />;
+export const ItemSeparator = () => <View style={styles.separator} />;
 
-const ReviewItem = ({ review }) => {
+export const ReviewItem = ({ review, subheading }) => {
   const date = format(new Date(review.createdAt), "dd.MM.yyyy");
 
   return (
@@ -52,7 +52,7 @@ const ReviewItem = ({ review }) => {
         </Text>
       </View>
       <View style={styles.rows}>
-        <Subheading>{review.user.username}</Subheading>
+        <Subheading>{subheading ?? review.user.username}</Subheading>
         <Text style={styles.item} color="textSecondary">
           {date}
         </Text>
@@ -62,7 +62,7 @@ const ReviewItem = ({ review }) => {
   );
 };
 
-const SingleRepository = ({ repository, showButton, onEndReached }) => {
+export const SingleRepository = ({ repository, showButton, onEndReached }) => {
   const reviews = repository
     ? repository.reviews.edges.map((edge) => edge.node)
     : [];
