@@ -116,10 +116,6 @@ const RepositoryList = () => {
     setSearchQuery(value);
   };
 
-  const onEndReached = () => {
-    fetchMore();
-  };
-
   return (
     <RepositoryListContainer
       repositories={repositories}
@@ -136,7 +132,7 @@ const RepositoryList = () => {
           />
         </>
       }
-      onEndReached={onEndReached}
+      onEndReached={fetchMore}
     />
   );
 };

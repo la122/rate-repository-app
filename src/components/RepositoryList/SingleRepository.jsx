@@ -62,7 +62,7 @@ const ReviewItem = ({ review }) => {
   );
 };
 
-const SingleRepository = ({ repository, showButton }) => {
+const SingleRepository = ({ repository, showButton, onEndReached }) => {
   const reviews = repository
     ? repository.reviews.edges.map((edge) => edge.node)
     : [];
@@ -79,6 +79,8 @@ const SingleRepository = ({ repository, showButton }) => {
         </>
       )}
       ItemSeparatorComponent={ItemSeparator}
+      onEndReached={onEndReached}
+      onEndReachedThreshold={0.5}
     />
   );
 };
